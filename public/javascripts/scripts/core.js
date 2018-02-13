@@ -1,4 +1,4 @@
-require(['jquery', 'https://login.persona.org/include.js'], function($) {
+require(['jquery'], function($) {
   $(function() {
     var $window = $(window);
     var $body = $('body');
@@ -16,34 +16,50 @@ require(['jquery', 'https://login.persona.org/include.js'], function($) {
       navigator.id.logout();
     });
 
-    navigator.id.watch({
-      loggedInEmail: currentUser,
-      onlogin: function(assertion) {
-        $.ajax({
-          type: 'POST',
-          url: '/log-in',
-          data: { assertion: assertion },
-          success: function(res, status, xhr) {
-            window.location = redirectUrl;
-          },
-          error: function(res, status, xhr) {
-            alert('login failure ' + res);
-          }
-        });
-      },
-      onlogout: function() {
-        $.ajax({
-          type: 'POST',
-          url: '/log-out',
-          success: function(res, status, xhr) {
-            window.location.reload();
-          },
-          error: function(res, status, xhr) {
-            console.log('logout failure ' + res);
-          }
-        });
-      }
-    });
+    if (navigator.id) {
+      navigator.id.watch({
+        loggedInEmail: currentUser,
+        onlogin: function(assertion) {
+          $.ajax({
+            type: 'POST',
+            url: '/log-in',
+            data: { assertion: assertion },
+            success: function(res, status, xhr) {
+              window.location = redirectUrl;
+            },
+            error: function(res, status, xhr) {
+              alert('login failure ' + res);
+            }
+          });
+        },
+        onlogout: function() {
+          $.ajax({
+            type: 'POST',
+            url: '/log-out',
+            success: function(res, status, xhr) {
+              window.location.reload();
+            },
+            error: function(res, status, xhr) {
+              console.log('logout failure ' + res);
+            }
+          });
+        }
+      });
+    } else {
+      // Fake the login
+      $.ajax({
+        type: 'POST',
+        url: '/log-in',
+        data: { assertion: 'assertion' },
+        success: function(res, status, xhr) {
+          // XXX: Redirect to home, in fake-login-land we know that we're there anyways.
+          // window.location.reload();
+        },
+        error: function(res, status, xhr) {
+          alert('login failure ' + res);
+        }
+      });
+    }
 
     // placeholder polyfill
     var input = document.createElement('input');

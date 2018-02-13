@@ -8,4 +8,4 @@ script#external-link-popover-template(type='text/template')
       label(for='url') Link to URL:
       input#url(name='url', type='text', value!='<%- url %>')
 
-    != partial('templates/popovers/footer')
+    include templates/popovers/footer

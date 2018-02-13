@@ -4,7 +4,7 @@ script#auth-element-template(type='text/template')
       a.persona-button.log-out(href='/share/#{userId}/project/#{projectId}/screen/#{screenId}/log-out')
         span Sign out
     else
-      != partial('helpers/share-login-form')
+      include helpers/share-login-form
   else
     a.persona-button(href='#log-in', tabindex='-1')
       span Sign in

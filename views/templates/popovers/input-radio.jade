@@ -4,4 +4,4 @@ script#input-radio-popover-template(type='text/template')
       label(for='name') Name:
       input#name(name='name', type='text', value!='<%- name %>')
 
-    != partial('templates/popovers/footer')
+    include templates/popovers/footer

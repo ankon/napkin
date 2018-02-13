@@ -1,4 +1,4 @@
-require(['jquery', 'https://login.persona.org/include.js'], function($) {
+require(['jquery'], function($) {
   $(function() {
     var $content = $('#content');
 

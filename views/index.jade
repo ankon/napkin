@@ -5,16 +5,16 @@ block styles
 
 block sidebar
   h2 Projects
-  !=partial('forms/add-project')
+  include forms/add-project
 
   ul#projects
 
 block content
-  !=partial('forms/add-screen')
+  include forms/add-screen
 
 block scripts
   script(src='/javascripts/lib/require-jquery.min.js', data-main='/javascripts/scripts/index.js')
 
-  !=partial('templates/collections/project')
-  !=partial('templates/collections/screen')
-  !=partial('templates/popovers/project-deletion')
+  include templates/collections/project
+  include templates/collections/screen
+  include templates/popovers/project-deletion

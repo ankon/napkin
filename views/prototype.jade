@@ -34,40 +34,40 @@ block scripts
     script(src='/javascripts/lib/require-jquery.min.js', data-main='/javascripts/scripts/prototype.js')
 
   // layouts and lists
-  != partial('templates/layouts/layout')
-  != partial('templates/lists/component')
-  != partial('templates/lists/article-element')
-  != partial('templates/lists/form-element')
-  != partial('templates/lists/navigation-element')
+  include templates/layouts/layout
+  include templates/lists/component
+  include templates/lists/article-element
+  include templates/lists/form-element
+  include templates/lists/navigation-element
 
   // article elements and popovers
-  != partial('templates/elements/heading')
-  != partial('templates/elements/paragraph')
-  != partial('templates/elements/auth')
+  include templates/elements/heading
+  include templates/elements/paragraph
+  include templates/elements/auth
 
   if !sharing
-    != partial('templates/popovers/heading')
-    != partial('templates/popovers/paragraph')
-    != partial('templates/popovers/auth')
+    include templates/popovers/heading
+    include templates/popovers/paragraph
+    include templates/popovers/auth
 
   // form elements and popovers
-  != partial('templates/elements/input-text')
-  != partial('templates/elements/input-radio')
-  != partial('templates/elements/input-checkbox')
-  != partial('templates/elements/textarea')
+  include templates/elements/input-text
+  include templates/elements/input-radio
+  include templates/elements/input-checkbox
+  include templates/elements/textarea
 
   if !sharing
-    != partial('templates/popovers/input-text')
-    != partial('templates/popovers/input-radio')
-    != partial('templates/popovers/input-checkbox')
-    != partial('templates/popovers/textarea')
+    include templates/popovers/input-text
+    include templates/popovers/input-radio
+    include templates/popovers/input-checkbox
+    include templates/popovers/textarea
 
   // navigation elements and popovers
-  != partial('templates/elements/screen-link')
-  != partial('templates/elements/external-link')
+  include templates/elements/screen-link
+  include templates/elements/external-link
 
   if !sharing
-    != partial('templates/popovers/screen-link')
-    != partial('templates/popovers/external-link')
+    include templates/popovers/screen-link
+    include templates/popovers/external-link
 
 block github

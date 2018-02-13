@@ -1,7 +1,7 @@
 "use strict";
 var express = require('express');
 var configurations = module.exports;
-var app = express.createServer();
+var app = express();
 var nconf = require('nconf');
 var redis = require('redis');
 var db = redis.createClient();
@@ -16,5 +16,9 @@ nconf.argv().env().file({ file: 'local.json' });
 // routes
 require('./routes')(app, nconf, db);
 require('./routes/auth')(app, nconf, db);
+// last handler; assume 404 at this point
+var utils = require('./lib/utils');
+app.use(utils.render404);
+
 
 app.listen(process.env.PORT || nconf.get('port'));

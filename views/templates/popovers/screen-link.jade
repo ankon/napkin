@@ -8,4 +8,4 @@ script#screen-link-popover-template(type='text/template')
       label(for='screen') Link to screen:
       != partial('templates/helpers/screen-selection', { selected: 'screen', name: 'screen' })
 
-    != partial('templates/popovers/footer')
+    include templates/popovers/footer
